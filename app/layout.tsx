@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <HeroUIProvider>
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <HeroUIProvider>
           <div className="flex h-full min-h-screen w-full flex-col justify-between">
             <Header />
             <main className="mx-auto w-full max-w-3xl flex-auto px-4 py-4 sm:px-6 md:py-6">
@@ -25,8 +25,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
             </main>
             <Footer />
           </div>
-        </body>
-      </HeroUIProvider>
+        </HeroUIProvider>
+      </body>
     </html>
   )
 }
