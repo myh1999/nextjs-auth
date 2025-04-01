@@ -21,7 +21,7 @@ const storage = createStorage({
 })
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  debug: true,
+  debug: process.env.IS_DEVELOPMENT === "true",
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
   adapter: UnstorageAdapter(storage),
   providers: [
