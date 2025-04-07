@@ -28,7 +28,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   basePath: "/auth",
   session: { strategy: "jwt" },
-  secret: "yQsP/7mO+01kY/pLXiTSx0czRY1RNUw7u97KVclTvwM=",
+  secret: process.env.AUTH_SECRET,
   callbacks: {
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl
