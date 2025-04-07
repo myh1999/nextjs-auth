@@ -53,7 +53,7 @@ export default function Gitee(config: any): any {
       return {
         id: profile.id.toString(),
         name: profile.name ?? profile.login,
-        email: profile.email,
+        email: profile.email || '',
         image: profile.avatar_url,
       };
     },

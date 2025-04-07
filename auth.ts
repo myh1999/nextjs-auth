@@ -3,27 +3,15 @@ import "next-auth/jwt"
 
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
-import { createStorage } from "unstorage"
-import memoryDriver from "unstorage/drivers/memory"
-import vercelKVDriver from "unstorage/drivers/vercel-kv"
-import { UnstorageAdapter } from "@auth/unstorage-adapter"
+import { PrismaAdapter } from '@auth/prisma-adapter';
+
 import Gitee from '@/providers/gitee';
-
-
-const storage = createStorage({
-  driver: process.env.VERCEL
-    ? vercelKVDriver({
-      url: process.env.AUTH_KV_REST_API_URL,
-      token: process.env.AUTH_KV_REST_API_TOKEN,
-      env: false,
-    })
-    : memoryDriver(),
-})
+import prisma from '@/lib/prisma';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   debug: process.env.IS_DEVELOPMENT === "true",
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
-  adapter: UnstorageAdapter(storage),
+  adapter: PrismaAdapter(prisma),
   providers: [
     GitHub({
       clientId: process.env.AUTH_GITHUB_ID!,
