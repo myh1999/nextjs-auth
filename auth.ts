@@ -3,6 +3,7 @@ import "next-auth/jwt"
 
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
+import GitLab from "next-auth/providers/gitlab"
 import { PrismaAdapter } from '@auth/prisma-adapter';
 
 import Gitee from '@/providers/gitee';
@@ -20,6 +21,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Google({
       clientId: process.env.AUTH_GOOGLE_ID!,
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+    }),
+    GitLab({
+      clientId: process.env.AUTH_GITLAB_ID!,
+      clientSecret: process.env.AUTH_GITLAB_SECRET!,
     }),
     Gitee({
       clientId: process.env.GITEE_CLIENT_ID,
