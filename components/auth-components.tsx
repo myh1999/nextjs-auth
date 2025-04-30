@@ -1,5 +1,5 @@
-import { signIn, signOut } from "auth"
 import { Button } from "./ui/button"
+import { handleSignIn, handleSignOut } from "./auth-actions"
 
 export function SignIn({
   provider,
@@ -7,12 +7,9 @@ export function SignIn({
 }: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {
   return (
     <form
-      action={async () => {
-        "use server"
-        await signIn(provider)
-      }}
+      action={() => handleSignIn(provider)}
     >
-      <Button {...props}>Sign In</Button>
+      <Button {...props}>{provider}</Button>
     </form>
   )
 }
@@ -20,10 +17,7 @@ export function SignIn({
 export function SignOut(props: React.ComponentPropsWithRef<typeof Button>) {
   return (
     <form
-      action={async () => {
-        "use server"
-        await signOut()
-      }}
+      action={() => handleSignOut()}
       className="w-full"
     >
       <Button variant="ghost" className="w-full p-0" {...props}>
